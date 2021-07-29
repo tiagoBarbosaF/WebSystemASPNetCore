@@ -17,7 +17,10 @@ namespace WebSales.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Web salles Project";
+            ViewData["Developer"] = "Tiago Barbosa";
+            ViewData["Email"] = "tiago@farias.cc";
+            ViewData["Cellphone"] = "+55 85 99156.2388";
 
             return View();
         }
