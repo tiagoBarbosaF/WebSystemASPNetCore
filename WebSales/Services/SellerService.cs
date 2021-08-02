@@ -1,8 +1,6 @@
-﻿using System;
-using WebSales.Data;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using WebSales.Data;
 using WebSales.Models;
 
 namespace WebSales.Services
@@ -23,7 +21,6 @@ namespace WebSales.Services
 
         public void Insert(Seller obj)
         {
-            obj.Department = _context.Department.First();
             _context.Add(obj);
             _context.SaveChanges();
         }
