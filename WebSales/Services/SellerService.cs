@@ -35,9 +35,16 @@ namespace WebSales.Services
 
         public async Task RemoveAsync(int id)
         {
-            var obj = await _context.Seller.FindAsync(id);
-            _context.Seller.Remove(obj);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var obj = await _context.Seller.FindAsync(id);
+                _context.Seller.Remove(obj);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                throw new IntegrityException("Can't delete seller because he/she has sales.");
+            }
         }
 
         public async Task UpdateAsync(Seller obj)
@@ -52,7 +59,7 @@ namespace WebSales.Services
                 _context.Update(obj);
                 await _context.SaveChangesAsync();
             }
-            catch(DbConcurrencyException e)
+            catch (DbConcurrencyException e)
             {
                 throw new DbConcurrencyException(e.Message);
             }
